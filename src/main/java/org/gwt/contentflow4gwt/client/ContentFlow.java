@@ -129,7 +129,26 @@ public class ContentFlow<T> extends Composite {
             fContentFlowItems.add(item);
         }
     }
-
+    /*
+     * Test
+     */
+    public void removeItems(Widget... items) {
+    	for (Widget item : items) {
+    		fContentFlowItems.remove(item);
+            fContentFlowTemplate.removeWidget(item);
+        }
+    }
+    
+    public void remove() {
+    	removeItems(getItem(0));
+    	fContentFlowWrapper.removeItem(0);
+    	// Fire a scroll event
+    	// Remove scroll / click listener
+    	moveTo(getItem(3));
+    }
+    /*
+     * 
+     */
     public Widget getItem(int itemIndex) {
         return fContentFlowItems.get(itemIndex);
     }
@@ -199,6 +218,11 @@ public class ContentFlow<T> extends Composite {
 
         public void addWidget(Widget widget) {
             fWidget.add(widget, fItemContainer.<Element>cast());
+        }
+        
+        public void removeWidget(Widget widget) {
+//        	fItemContainer.getFirstChild().removeFromParent();
+        	fWidget.remove(widget);
         }
 
         public Widget asWidget() {
