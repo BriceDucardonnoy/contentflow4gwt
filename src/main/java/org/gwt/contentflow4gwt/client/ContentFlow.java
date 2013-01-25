@@ -140,10 +140,11 @@ public class ContentFlow<T> extends Composite {
     }
     
     public void remove() {
-    	removeItems(getItem(3));
+    	fContentFlowItems.remove(3);
+    	fContentFlowWrapper.removeItem(3);
     	// Fire a scroll event
     	// Remove scroll / click listener
-    	moveTo(getItem(1));
+    	moveTo(getItem(1));// Is it usefull?
     }
     /*
      * 
