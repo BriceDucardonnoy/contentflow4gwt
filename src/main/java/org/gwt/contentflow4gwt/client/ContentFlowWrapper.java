@@ -48,7 +48,4 @@ final class ContentFlowWrapper extends JavaScriptObject {
         return this.moveTo(itemIndex);
     }-*/;
     
-    public native void removeItem(int itemIndex) /*-{
-    	return this.rmItem(itemIndex);
-    }-*/;
 }
