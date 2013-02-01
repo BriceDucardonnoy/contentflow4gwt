@@ -22,6 +22,9 @@
 
 package org.gwt.contentflow4gwt.client;
 
+import java.util.ArrayList;
+
+import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Node;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -30,13 +33,10 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ContentFlow<T> extends Composite {
-    private final List<ContentFlowItemClickListener> fContentFlowItemClickListeners;
-    private final List<ContentFlowItemScrollListener> fContentFlowItemScrollListeners;
-    private final List<Widget> fContentFlowItems;
+    private final ArrayList<ContentFlowItemClickListener> fContentFlowItemClickListeners;
+    private final ArrayList<ContentFlowItemScrollListener> fContentFlowItemScrollListeners;
+    private final ArrayList<Widget> fContentFlowItems;
     private final ContentFlowWrapper fContentFlowWrapper;
     private final ContentFlowTemplate fContentFlowTemplate;
 
@@ -132,10 +132,24 @@ public class ContentFlow<T> extends Composite {
     /*
      * Test
      */
+    /**
+     * Removes items from DOM but keep it in memory
+     * @param items to delete
+     */
     public void removeItems(Widget... items) {
+    	int nb = fContentFlowItems.size();
+    	int ind;
     	for (Widget item : items) {
-    		fContentFlowItems.remove(item);
-            fContentFlowTemplate.removeWidget(item);
+//    		fContentFlowItems.remove(item);
+    		for(ind = 0 ; ind < nb ; ind++) {
+    			if(fContentFlowItems.get(ind).equals(item)) break;
+    		}
+    		Log.info("item index: " + ind);
+    		if(ind ==nb) {
+    			Log.warn("Widget not found => doesn't remove it");
+    			return;
+    		}
+    		fContentFlowWrapper.removeItem(ind);
         }
     }
     
@@ -144,7 +158,7 @@ public class ContentFlow<T> extends Composite {
     	fContentFlowWrapper.removeItem(3);
     	// Fire a scroll event
     	// Remove scroll / click listener
-    	moveTo(getItem(1));// Is it usefull?
+//    	moveTo(getItem(1));// Is it usefull?
     }
     /*
      * 
@@ -222,7 +236,12 @@ public class ContentFlow<T> extends Composite {
         
         public void removeWidget(Widget widget) {
 //        	fItemContainer.getFirstChild().removeFromParent();
-        	fWidget.remove(widget);
+//        	fWidget.remove(widget);
+        	fWidget.getWidget(getWidgetIndex(widget)).removeFromParent();
+        }
+        
+        public int getWidgetIndex(Widget widget) {
+        	return fWidget.getWidgetIndex(widget);
         }
 
         public Widget asWidget() {
