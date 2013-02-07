@@ -148,7 +148,7 @@ public class ContentFlow<T> extends Composite {
     		for(ind = 0 ; ind < nb ; ind++) {
     			if(fContentFlowItems.get(ind).equals(item)) break;
     		}
-    		Log.info("item index: " + ind);
+    		Log.info("remove item index: " + ind);
     		if(ind ==nb) {
     			Log.warn("Widget not found => doesn't remove it");
     			return;

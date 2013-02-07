@@ -31,14 +31,20 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class PhotoView extends Composite {
+	private Object pojo;
     /**
      * Creates a standard ContentFlow item with image and caption.
      * @param image use {@link com.reveregroup.gwt.imagepreloader.client.FitImage} if you want the image to be preloaded before displayed.
      * Images must be preloaded to be rendered correctly and completely in some browsers.
      * @param caption Text that will appear below the image.
      */
-    public PhotoView(Image image, String caption) {
+	public PhotoView(Image image, String caption) {
+        this(image, caption, null);
+    }
+	
+    public PhotoView(Image image, String caption, Object pojo) {
         initWidget(createWidget(image.getElement(), caption));
+        this.pojo = pojo;
     }
 
     private static Widget createWidget(Element imageElement, String captionText) {
@@ -53,4 +59,13 @@ public class PhotoView extends Composite {
 
         return result;
     }
+
+	public Object getPojo() {
+		return pojo;
+	}
+
+	public void setPojo(Object pojo) {
+		this.pojo = pojo;
+	}
+    
 }
