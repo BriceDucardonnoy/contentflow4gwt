@@ -129,6 +129,10 @@ public class ContentFlow<T> extends Composite {
             fContentFlowItems.add(item);
         }
     }
+    
+    public int getNumberOfItems() {
+    	return fContentFlowItems.size();
+    }
     /*
      * Test
      */
@@ -164,7 +168,9 @@ public class ContentFlow<T> extends Composite {
      * 
      */
     public Widget getItem(int itemIndex) {
-        return fContentFlowItems.get(itemIndex);
+//    	if(itemIndex < fContentFlowItems.size()) return fContentFlowItems.get(itemIndex);
+//    	return null;
+    	return fContentFlowItems.get(itemIndex);
     }
 
     public Widget getActiveItem() {
