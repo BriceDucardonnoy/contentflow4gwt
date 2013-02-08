@@ -23,6 +23,7 @@
 package org.gwt.contentflow4gwt.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Node;
 
 final class ContentFlowWrapper extends JavaScriptObject {
@@ -47,6 +48,10 @@ final class ContentFlowWrapper extends JavaScriptObject {
 
     public native void moveTo(int itemIndex) /*-{
         return this.moveTo(itemIndex);
+    }-*/;
+    
+    public native void addItem(Element el, int index) /*-{
+    	return this.addItem(el, index);
     }-*/;
     
     public native Node removeItem(int itemIndex) /*-{

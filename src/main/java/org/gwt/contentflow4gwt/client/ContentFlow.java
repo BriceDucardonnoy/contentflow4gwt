@@ -130,6 +130,16 @@ public class ContentFlow<T> extends Composite {
         }
     }
     
+    public void addItem(Widget item, int index) {
+    	Log.info("add item");
+    	fContentFlowTemplate.addWidget(item, index);
+    	fContentFlowWrapper.addItem(item.getElement(), index);
+    	// FIXME BDY: works but don't keep order and may need to move current position to re-have good names
+    	Log.info("add done");
+        // DO NOT USE fContentFlowWrapper.addItem()! items are already added using addWidget()!
+//        fContentFlowItems.add(item);
+    }
+    
     public int getNumberOfItems() {
     	return fContentFlowItems.size();
     }
@@ -148,7 +158,7 @@ public class ContentFlow<T> extends Composite {
     		for(ind = 0 ; ind < nb ; ind++) {
     			if(fContentFlowItems.get(ind).equals(item)) break;
     		}
-    		Log.info("remove item index: " + ind);
+//    		Log.info("remove item index: " + ind);
     		if(ind ==nb) {
     			Log.warn("Widget not found => doesn't remove it");
     			return;
@@ -240,15 +250,28 @@ public class ContentFlow<T> extends Composite {
             fWidget.add(widget, fItemContainer.<Element>cast());
         }
         
-        public void removeWidget(Widget widget) {
-//        	fItemContainer.getFirstChild().removeFromParent();
-//        	fWidget.remove(widget);
-        	fWidget.getWidget(getWidgetIndex(widget)).removeFromParent();
+        public void addWidget(Widget widget, int index) {
+        	if(index > fWidget.getElement().getChildCount()) {
+        		index = fWidget.getElement().getChildCount();
+        	}
+        	if(index == 0) {
+        		// FIXME BDY: cause an exception
+//        		fItemContainer.insertBefore(widget.getElement(), fWidget.getWidget(index).getElement());
+        	}
+        	else {
+        		fItemContainer.insertAfter(widget.getElement(), fWidget.getWidget(index - 1).getElement());
+        	}
         }
         
-        public int getWidgetIndex(Widget widget) {
-        	return fWidget.getWidgetIndex(widget);
-        }
+//        public void removeWidget(Widget widget) {
+////        	fItemContainer.getFirstChild().removeFromParent();
+////        	fWidget.remove(widget);
+//        	fWidget.getWidget(getWidgetIndex(widget)).removeFromParent();
+//        }
+//        
+//        public int getWidgetIndex(Widget widget) {
+//        	return fWidget.getWidgetIndex(widget);
+//        }
 
         public Widget asWidget() {
             return fWidget;
