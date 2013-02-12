@@ -131,8 +131,8 @@ public class ContentFlow<T> extends Composite {
     }
     
     public void addItem(Widget item, int index) {
-    	Log.info("add item");
-    	fContentFlowTemplate.addWidget(item, index);
+    	Log.info("add it at position " + index);
+    	fContentFlowTemplate.addWidget(item, index);// Not sure it's useful
     	fContentFlowWrapper.addItem(item.getElement(), index);
     	// FIXME BDY: works but don't keep order and may need to move current position to re-have good names
     	Log.info("add done");
@@ -251,7 +251,7 @@ public class ContentFlow<T> extends Composite {
         }
         
         public void addWidget(Widget widget, int index) {
-        	if(index > fWidget.getElement().getChildCount()) {
+        	if(index > fWidget.getElement().getChildCount()) {// Warning: if add at index 8 but still not 8 elements...
         		index = fWidget.getElement().getChildCount();
         	}
         	if(index == 0) {
