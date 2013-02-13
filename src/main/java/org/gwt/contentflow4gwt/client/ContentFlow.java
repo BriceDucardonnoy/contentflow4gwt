@@ -122,6 +122,10 @@ public class ContentFlow<T> extends Composite {
         }
     }
 
+    /**
+     * Add items in memory and in DOM
+     * @param items the items to add
+     */
     public void addItems(Widget... items) {
         for (Widget item : items) {
             fContentFlowTemplate.addWidget(item);
@@ -130,14 +134,22 @@ public class ContentFlow<T> extends Composite {
         }
     }
     
+    /**
+     * Add item in DOM. Assumes that item was already registered in memory with method
+     * {@link ContentFlow#addItems addItems}
+     * @param item the item to add
+     * @param index the index position 0-based to insert
+     */
     public void addItem(Widget item, int index) {
-    	Log.info("add it at position " + index);
+    	if(Log.isTraceEnabled()) {
+    		Log.trace("add it at position " + index);
+    	}
     	fContentFlowTemplate.addWidget(item, index);// Not sure it's useful
     	fContentFlowWrapper.addItem(item.getElement(), index);
-    	// FIXME BDY: works but don't keep order and may need to move current position to re-have good names
-    	Log.info("add done");
+    	if(Log.isTraceEnabled()) {
+    		Log.trace("add done");
+    	}
         // DO NOT USE fContentFlowWrapper.addItem()! items are already added using addWidget()!
-//        fContentFlowItems.add(item);
     }
     
     public int getNumberOfItems() {
@@ -193,7 +205,14 @@ public class ContentFlow<T> extends Composite {
     }
 
     public void moveTo(Widget item) {
+    	if(Log.isTraceEnabled()) {
+    		Log.trace("Move to item " + fContentFlowItems.indexOf(item));    		
+    	}
         fContentFlowWrapper.moveTo(fContentFlowItems.indexOf(item));
+    }
+    
+    public void moveTo(int idx) {
+    	fContentFlowWrapper.moveTo(idx);
     }
 
     public HandlerRegistration addItemClickListener(final ContentFlowItemClickListener clickListener) {
