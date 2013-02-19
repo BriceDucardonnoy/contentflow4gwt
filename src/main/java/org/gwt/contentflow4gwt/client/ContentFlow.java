@@ -140,14 +140,12 @@ public class ContentFlow<T> extends Composite {
      */
     public void addItem(Widget item) {
         fContentFlowItems.add(item);
-//        fContentFlowTemplate.addWidget(item, fContentFlowItems.size() - 1);
         fContentFlowWrapper.addItem(item.getElement(), fContentFlowItems.size() - 1);
-//        fContentFlowWrapper.moveTo(fContentFlowItems.indexOf(item));
     }
     
     /**
-     * Add item in DOM. Assumes that item was already registered in memory with method
-     * {@link ContentFlow#addItems addItems}
+     * Add item in DOM and memory at given position.<br/>
+     * See {@link ContentFlow#addItem addItem} to add item at last position.
      * @param item the item to add
      * @param index the index position 0-based to insert
      */
@@ -212,6 +210,10 @@ public class ContentFlow<T> extends Composite {
     		fContentFlowWrapper.removeItem(0);
     	}
     	fContentFlowItems.clear();
+    }
+    
+    public void step() {
+    	fContentFlowWrapper.holdPos(false, false);
     }
     
     public void refreshActiveItem() {
