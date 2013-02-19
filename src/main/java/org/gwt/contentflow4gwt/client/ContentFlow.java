@@ -135,6 +135,17 @@ public class ContentFlow<T> extends Composite {
     }
     
     /**
+     * Add item in memory and in DOM at last position
+     * @param item the item to add
+     */
+    public void addItem(Widget item) {
+        fContentFlowItems.add(item);
+//        fContentFlowTemplate.addWidget(item, fContentFlowItems.size() - 1);
+        fContentFlowWrapper.addItem(item.getElement(), fContentFlowItems.size() - 1);
+//        fContentFlowWrapper.moveTo(fContentFlowItems.indexOf(item));
+    }
+    
+    /**
      * Add item in DOM. Assumes that item was already registered in memory with method
      * {@link ContentFlow#addItems addItems}
      * @param item the item to add
@@ -144,7 +155,8 @@ public class ContentFlow<T> extends Composite {
     	if(Log.isTraceEnabled()) {
     		Log.trace("add it at position " + index);
     	}
-    	fContentFlowTemplate.addWidget(item, index);// Not sure it's useful
+    	fContentFlowItems.add(index, item);
+//    	fContentFlowTemplate.addWidget(item, index);// Not sure it's useful
     	fContentFlowWrapper.addItem(item.getElement(), index);
     	if(Log.isTraceEnabled()) {
     		Log.trace("add done");
@@ -152,12 +164,22 @@ public class ContentFlow<T> extends Composite {
         // DO NOT USE fContentFlowWrapper.addItem()! items are already added using addWidget()!
     }
     
+    public void removeItem(int index) {
+    	if(Log.isTraceEnabled()) {
+    		Log.trace("remove it at position " + index);
+    	}
+    	fContentFlowWrapper.removeItem(index);
+    	fContentFlowItems.remove(index);
+    	if(Log.isTraceEnabled()) {
+    		Log.trace("remove done");
+    	}
+        // DO NOT USE fContentFlowWrapper.addItem()! items are already added using addWidget()!
+    }
+    
     public int getNumberOfItems() {
     	return fContentFlowItems.size();
     }
-    /*
-     * Test
-     */
+    
     /**
      * Removes items from DOM but keep it in memory
      * @param items to delete
@@ -171,7 +193,7 @@ public class ContentFlow<T> extends Composite {
     			if(fContentFlowItems.get(ind).equals(item)) break;
     		}
 //    		Log.info("remove item index: " + ind);
-    		if(ind ==nb) {
+    		if(ind == nb) {
     			Log.warn("Widget not found => doesn't remove it");
     			return;
     		}
@@ -179,12 +201,21 @@ public class ContentFlow<T> extends Composite {
         }
     }
     
-    public void remove() {
-    	fContentFlowItems.remove(3);
-    	fContentFlowWrapper.removeItem(3);
-    	// Fire a scroll event
-    	// Remove scroll / click listener
-//    	moveTo(getItem(1));// Is it usefull?
+    /*
+     * Test
+     */
+    /**
+     * Removes items
+     */
+    public void removeAll() {
+    	while(fContentFlowWrapper.getNumberOfItems() > 0) {
+    		fContentFlowWrapper.removeItem(0);
+    	}
+    	fContentFlowItems.clear();
+    }
+    
+    public void refreshActiveItem() {
+    	fContentFlowWrapper.refreshActiveItem();
     }
     /*
      * 
@@ -269,19 +300,19 @@ public class ContentFlow<T> extends Composite {
             fWidget.add(widget, fItemContainer.<Element>cast());
         }
         
-        public void addWidget(Widget widget, int index) {
-        	if(index > fWidget.getElement().getChildCount()) {// Warning: if add at index 8 but still not 8 elements...
-        		index = fWidget.getElement().getChildCount();
-        	}
-        	if(index == 0) {
-        		// FIXME BDY: cause an exception
-//        		fItemContainer.insertBefore(widget.getElement(), fWidget.getWidget(index).getElement());
-        	}
-        	else {
-        		fItemContainer.insertAfter(widget.getElement(), fWidget.getWidget(index - 1).getElement());
-        	}
-        }
-        
+//        public void addWidget(Widget widget, int index) {
+//        	if(index > fWidget.getElement().getChildCount()) {// Warning: if add at index 8 but still not 8 elements...
+//        		index = fWidget.getElement().getChildCount();
+//        	}
+//        	if(index == 0) {
+//        		// FIXME BDY (deprecated): cause an exception
+////        		fItemContainer.insertBefore(widget.getElement(), fWidget.getWidget(index).getElement());
+//        	}
+//        	else {
+//        		fItemContainer.insertAfter(widget.getElement(), fWidget.getWidget(index - 1).getElement());
+//        	}
+//        }
+//        
 //        public void removeWidget(Widget widget) {
 ////        	fItemContainer.getFirstChild().removeFromParent();
 ////        	fWidget.remove(widget);

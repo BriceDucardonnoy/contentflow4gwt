@@ -57,4 +57,17 @@ final class ContentFlowWrapper extends JavaScriptObject {
     public native Node removeItem(int itemIndex) /*-{
     	return this.rmItem(itemIndex);
     }-*/;
+    
+    public native void holdPos(boolean holdSlider, boolean holdPos) /*-{
+    	return this._initStep(holdSlider, holdPos);
+    }-*/;
+    
+    public native void refreshActiveItem() /*-{
+    	if(this._currentPosition =="undefined") {
+    		this._activeItem = this._getItemByPosition(0);
+    	}
+    	else {
+    		this._activeItem = this._getItemByPosition(this._currentPosition);
+    	}
+	}-*/;
 }
