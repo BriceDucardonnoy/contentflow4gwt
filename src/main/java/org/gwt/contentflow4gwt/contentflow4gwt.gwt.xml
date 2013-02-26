@@ -8,5 +8,6 @@
   <!-- Add the 'TRACE' and 'DEBUG' compile time log level 		-->
   <extend-property name="log_level" values="INFO"/>
 
+    <!-- <script src="contentflow_src.js"/> -->
     <script src="contentflow.js"/>
 </module>

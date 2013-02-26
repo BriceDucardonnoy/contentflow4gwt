@@ -40,6 +40,8 @@ public class ContentFlow<T> extends Composite {
     private final ContentFlowWrapper fContentFlowWrapper;
     private final ContentFlowTemplate fContentFlowTemplate;
 
+    // TODO BDY: in contentflow_src.js, add Android and Windows Phone support (cf. todo in .js)
+    
     public ContentFlow() {
         this(false, false);
     }
