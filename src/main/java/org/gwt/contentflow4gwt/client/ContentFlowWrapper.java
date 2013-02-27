@@ -75,6 +75,6 @@ final class ContentFlowWrapper extends JavaScriptObject {
 	    		self._activeItem = self._getItemByPosition(self._currentPosition);
 	    	}
 			self.moveTo(0);
-    	}, 1000);
+    	}, 100);
 	}-*/;
 }
