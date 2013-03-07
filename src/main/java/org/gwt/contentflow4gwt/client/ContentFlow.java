@@ -192,7 +192,9 @@ public class ContentFlow<T> extends Composite {
     		for(ind = 0 ; ind < nb ; ind++) {
     			if(fContentFlowItems.get(ind).equals(item)) break;
     		}
-//    		Log.info("remove item index: " + ind);
+    		if(Log.isTraceEnabled()) {
+    			Log.trace("remove item index: " + ind);
+    		}
     		if(ind == nb) {
     			Log.warn("Widget not found => doesn't remove it");
     			return;
@@ -221,9 +223,7 @@ public class ContentFlow<T> extends Composite {
     public void refreshActiveItem() {
     	fContentFlowWrapper.refreshActiveItem();
     }
-    /*
-     * 
-     */
+    
     public Widget getItem(int itemIndex) {
 //    	if(itemIndex < fContentFlowItems.size()) return fContentFlowItems.get(itemIndex);
 //    	return null;
@@ -272,6 +272,7 @@ public class ContentFlow<T> extends Composite {
         private static final String CONTENT_FLOW_CLASS = "ContentFlow";
         private static final String FLOW_TEMPLATE = "<div class=\"flow\"></div>";
         private static final String GLOBAL_CAPTION_TEMPLATE = "<div class=\"globalCaption\"></div>";
+        // TODO BDY: maybe add attribute 'transparent' for black (or other color) (cf. contentflow_src.js line 1032)
         private static final String SCROLLBAR_TEMPLATE = "<div class=\"scrollbar\"><div class=\"slider\"></div></div>";
 
         private static int nextId = 1;
@@ -304,29 +305,6 @@ public class ContentFlow<T> extends Composite {
             fWidget.add(widget, fItemContainer.<Element>cast());
         }
         
-//        public void addWidget(Widget widget, int index) {
-//        	if(index > fWidget.getElement().getChildCount()) {// Warning: if add at index 8 but still not 8 elements...
-//        		index = fWidget.getElement().getChildCount();
-//        	}
-//        	if(index == 0) {
-//        		// FIXME BDY (deprecated): cause an exception
-////        		fItemContainer.insertBefore(widget.getElement(), fWidget.getWidget(index).getElement());
-//        	}
-//        	else {
-//        		fItemContainer.insertAfter(widget.getElement(), fWidget.getWidget(index - 1).getElement());
-//        	}
-//        }
-//        
-//        public void removeWidget(Widget widget) {
-////        	fItemContainer.getFirstChild().removeFromParent();
-////        	fWidget.remove(widget);
-//        	fWidget.getWidget(getWidgetIndex(widget)).removeFromParent();
-//        }
-//        
-//        public int getWidgetIndex(Widget widget) {
-//        	return fWidget.getWidgetIndex(widget);
-//        }
-
         public Widget asWidget() {
             return fWidget;
         }
