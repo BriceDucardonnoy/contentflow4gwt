@@ -476,6 +476,10 @@ ContentFlowItem.prototype = {
         var cItem = this.clickItem;
         this[this._activeElement].addEvent('click', cItem, false);
     },
+    
+    removeClickHandler: function() {
+    	this[this._activeElement].removeEvent('click', this.clickItem);
+    },
 
     setImageFormat: function (img) {
         if (this.Browser.IE6 || this.Browser.IE7) img.style.width = "auto";
@@ -1257,6 +1261,7 @@ ContentFlow.prototype = {
         if (!this.items[index]) return null;
 
         var item = this.items[index];
+        item.removeClickHandler();
 
         if (item.pre) item.pre.next = item.next;
         if (item.next) item.next.pre = item.pre;
