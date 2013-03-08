@@ -62,7 +62,7 @@ final class ContentFlowWrapper extends JavaScriptObject {
     	return this._initStep(holdSlider, holdPos);
     }-*/;
     
-    public native void refreshActiveItem() /*-{
+    public native void refreshActiveItem(int timeout) /*-{
     	// Call to window.setTimeout => in function: lost of 'this'
     	console.log("Refresh active item");
     	var self = this;
@@ -75,6 +75,6 @@ final class ContentFlowWrapper extends JavaScriptObject {
 	    		self._activeItem = self._getItemByPosition(self._currentPosition);
 	    	}
 			self.moveTo(0);
-    	}, 100);
+    	}, timeout);
 	}-*/;
 }

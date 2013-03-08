@@ -221,7 +221,11 @@ public class ContentFlow<T> extends Composite {
     }
     
     public void refreshActiveItem() {
-    	fContentFlowWrapper.refreshActiveItem();
+    	fContentFlowWrapper.refreshActiveItem(100);
+    }
+    
+    public void refreshActiveItem(int timeout) {
+    	fContentFlowWrapper.refreshActiveItem(timeout);
     }
     
     public Widget getItem(int itemIndex) {
