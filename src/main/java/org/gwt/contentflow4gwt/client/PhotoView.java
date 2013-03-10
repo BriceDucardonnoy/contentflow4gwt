@@ -32,33 +32,34 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class PhotoView extends Composite {
 	private Object pojo;
-    /**
-     * Creates a standard ContentFlow item with image and caption.
-     * @param image use {@link com.reveregroup.gwt.imagepreloader.client.FitImage} if you want the image to be preloaded before displayed.
-     * Images must be preloaded to be rendered correctly and completely in some browsers.
-     * @param caption Text that will appear below the image.
-     */
+	/**
+	 * Creates a standard ContentFlow item with image and caption.
+	 * @param image use {@link com.reveregroup.gwt.imagepreloader.client.FitImage} if you want the image to be preloaded before displayed.
+	 * Images must be preloaded to be rendered correctly and completely in some browsers.
+	 * @param caption Text that will appear below the image.
+	 */
 	public PhotoView(Image image, String caption) {
-        this(image, caption, null);
-    }
-	
-    public PhotoView(Image image, String caption, Object pojo) {
-        initWidget(createWidget(image.getElement(), caption));
-        this.pojo = pojo;
-    }
+		this(image, caption, null);
+	}
 
-    private static Widget createWidget(Element imageElement, String captionText) {
-        SimplePanel result = new SimplePanel();
-        result.setStyleName("item");
-        DivElement caption = Document.get().createDivElement();
-        caption.setClassName("caption");
-        caption.setInnerHTML(captionText);
-        imageElement.setClassName("content");
-        result.getElement().appendChild(imageElement);
-        result.getElement().appendChild(caption);
+	public PhotoView(Image image, String caption, Object pojo) {
+		initWidget(createWidget(image.getElement(), caption));
+		this.pojo = pojo;
+	}
 
-        return result;
-    }
+	private static Widget createWidget(Element imageElement, String captionText) {
+		SimplePanel result = new SimplePanel();
+		result.setStyleName("item");
+//		result.getElement().setAttribute("href", imageElement.getAttribute("src"));
+		DivElement caption = Document.get().createDivElement();
+		caption.setClassName("caption");
+		caption.setInnerHTML(captionText);
+		imageElement.setClassName("content");
+		result.getElement().appendChild(imageElement);
+		result.getElement().appendChild(caption);
+
+		return result;
+	}
 
 	public Object getPojo() {
 		return pojo;
@@ -67,5 +68,5 @@ public class PhotoView extends Composite {
 	public void setPojo(Object pojo) {
 		this.pojo = pojo;
 	}
-    
+
 }
