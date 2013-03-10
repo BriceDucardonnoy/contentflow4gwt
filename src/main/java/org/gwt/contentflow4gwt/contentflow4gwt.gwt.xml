@@ -10,4 +10,5 @@
 
     <!-- <script src="contentflow_src.js"/> -->
     <script src="contentflow.js"/>
+    <script src="ContentFlowAddOn_black.js" />
 </module>

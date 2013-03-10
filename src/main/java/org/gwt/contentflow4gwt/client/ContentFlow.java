@@ -88,7 +88,8 @@ public class ContentFlow<T> extends Composite {
             reflectionHeight: _reflectionHeight,
             flowDragFriction: _flowDragFriction,
             scrollWheelSpeed: 1.0,
-            circularFlow: _circularFlow
+            circularFlow: _circularFlow,
+            useAddOns: "all black"
         };
 
         var log = $wnd.log; //may be used to debug content flow script
