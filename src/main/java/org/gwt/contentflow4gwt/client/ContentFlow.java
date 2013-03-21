@@ -39,7 +39,7 @@ public class ContentFlow<T> extends Composite {
     private final ArrayList<Widget> fContentFlowItems;
     private final ContentFlowWrapper fContentFlowWrapper;
     private final ContentFlowTemplate fContentFlowTemplate;
-
+    
     // TODO BDY: in contentflow_src.js, add Android and Windows Phone support (cf. todo in .js)
     
     public ContentFlow() {
@@ -98,11 +98,19 @@ public class ContentFlow<T> extends Composite {
         return new $wnd.ContentFlow(id, conf);
     }-*/;
 
-    @Override
-    protected void onLoad() {
-        super.onLoad();
-        // Initialize the object after it has been added to the DOM, if not ContentFlow cannot find DOM elements
-        fContentFlowWrapper.init();
+//    @Override
+//    protected void onLoad() {
+//    	super.onLoad();
+//    	// Initialize the object after it has been added to the DOM, if not ContentFlow cannot find DOM elements
+////   	fContentFlowWrapper.init();
+//    	init();
+//    }
+    
+    public void init() {
+    	if(Log.isTraceEnabled()) {
+    		Log.trace("Init");
+    	}
+    	fContentFlowWrapper.init();
     }
 
     private void onReachTarget(int itemIndex) {
@@ -204,9 +212,6 @@ public class ContentFlow<T> extends Composite {
         }
     }
     
-    /*
-     * Test
-     */
     /**
      * Removes items
      */
