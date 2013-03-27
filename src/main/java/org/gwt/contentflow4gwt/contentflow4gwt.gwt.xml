@@ -3,10 +3,10 @@
     <inherits name="com.reveregroup.gwt.imagepreloader.ImagePreloader"/>
     
      <!-- Add gwt-log support, default level OFF / TRACE / FATAL -->
-  <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG"/>
+  <!-- <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG"/> -->
   
   <!-- Add the 'TRACE' and 'DEBUG' compile time log level 		-->
-  <extend-property name="log_level" values="INFO"/>
+  <!-- <extend-property name="log_level" values="INFO"/> -->
 
     <!-- <script src="contentflow_src.js"/> -->
     <script src="contentflow.js"/>

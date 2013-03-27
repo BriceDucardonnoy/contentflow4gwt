@@ -110,6 +110,7 @@ public class ContentFlow<T> extends Composite {
     	if(Log.isTraceEnabled()) {
     		Log.trace("Init");
     	}
+    	Log.info("Init");
     	fContentFlowWrapper.init();
     }
 
