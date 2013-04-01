@@ -283,7 +283,6 @@ public class ContentFlow<T> extends Composite {
         private static final String CONTENT_FLOW_CLASS = "ContentFlow";
         private static final String FLOW_TEMPLATE = "<div class=\"flow\"></div>";
         private static final String GLOBAL_CAPTION_TEMPLATE = "<div class=\"globalCaption\"></div>";
-        // TODO BDY: maybe add attribute 'transparent' for black (or other color) (cf. contentflow_src.js line 1032)
         private static final String SCROLLBAR_TEMPLATE = "<div class=\"scrollbar\"><div class=\"slider\"></div></div>";
 
         private static int nextId = 1;
