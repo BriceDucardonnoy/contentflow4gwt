@@ -69,7 +69,6 @@ final class ContentFlowWrapper extends JavaScriptObject {
     	window.setTimeout(function () {
 	    	if(self._currentPosition =="undefined" || isNaN(self._currentPosition) || self._currentPosition < 0) {
 	    		self._activeItem = self._getItemByPosition(0);
-	    		
 	    	}
 	    	else {
 	    		self._activeItem = self._getItemByPosition(self._currentPosition);

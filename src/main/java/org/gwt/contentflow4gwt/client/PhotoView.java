@@ -32,6 +32,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class PhotoView extends Composite {
 	private Object pojo;
+	private Widget container;
 	/**
 	 * Creates a standard ContentFlow item with image and caption.
 	 * @param image use {@link com.reveregroup.gwt.imagepreloader.client.FitImage} if you want the image to be preloaded before displayed.
@@ -43,7 +44,8 @@ public class PhotoView extends Composite {
 	}
 
 	public PhotoView(Image image, String caption, Object pojo) {
-		initWidget(createWidget(image.getElement(), caption));
+		container = createWidget(image.getElement(), caption);
+		initWidget(container);
 		this.pojo = pojo;
 	}
 
@@ -67,6 +69,10 @@ public class PhotoView extends Composite {
 
 	public void setPojo(Object pojo) {
 		this.pojo = pojo;
+	}
+
+	public Widget getContainer() {
+		return container;
 	}
 
 }

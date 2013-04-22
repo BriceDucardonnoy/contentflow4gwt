@@ -28,6 +28,7 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Node;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -111,7 +112,9 @@ public class ContentFlow<T> extends Composite {
     		Log.trace("Init");
     	}
     	Log.info("Init");
+    	DOM.setStyleAttribute(getElement(), "cursor", "wait");
     	fContentFlowWrapper.init();
+    	DOM.setStyleAttribute(getElement(), "cursor", "default");
     }
 
     private void onReachTarget(int itemIndex) {
@@ -183,7 +186,6 @@ public class ContentFlow<T> extends Composite {
     	if(Log.isTraceEnabled()) {
     		Log.trace("remove done");
     	}
-        // DO NOT USE fContentFlowWrapper.addItem()! items are already added using addWidget()!
     }
     
     public int getNumberOfItems() {
@@ -194,6 +196,7 @@ public class ContentFlow<T> extends Composite {
      * Removes items from DOM but keep it in memory
      * @param items to delete
      */
+    @Deprecated
     public void removeItems(Widget... items) {
     	int nb = fContentFlowItems.size();
     	int ind;
