@@ -168,6 +168,10 @@ public class ContentFlow<T> extends Composite {
     	if(Log.isTraceEnabled()) {
     		Log.trace("add it at position " + index);
     	}
+    	if(index >= fContentFlowItems.size()) {
+    		addItem(item);
+    		return;
+    	}
     	fContentFlowItems.add(index, item);
 //    	fContentFlowTemplate.addWidget(item, index);// Not sure it's useful
     	fContentFlowWrapper.addItem(item.getElement(), index);
