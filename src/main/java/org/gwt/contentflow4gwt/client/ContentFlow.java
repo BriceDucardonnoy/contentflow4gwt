@@ -28,7 +28,6 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Node;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -40,6 +39,8 @@ public class ContentFlow<T> extends Composite {
     private final ArrayList<Widget> fContentFlowItems;
     private final ContentFlowWrapper fContentFlowWrapper;
     private final ContentFlowTemplate fContentFlowTemplate;
+    
+    private boolean isInit = false;
     
     // TODO BDY: in contentflow_src.js, add Android and Windows Phone support (cf. todo in .js)
     
@@ -112,9 +113,12 @@ public class ContentFlow<T> extends Composite {
     		Log.trace("Init");
     	}
     	Log.info("Init");
-    	DOM.setStyleAttribute(getElement(), "cursor", "wait");
     	fContentFlowWrapper.init();
-    	DOM.setStyleAttribute(getElement(), "cursor", "default");
+    	isInit = true;
+    }
+    
+    public boolean isInit() {
+    	return isInit;
     }
 
     private void onReachTarget(int itemIndex) {
