@@ -200,6 +200,10 @@ public class ContentFlow<T> extends Composite {
     	return fContentFlowItems.size();
     }
     
+    public void resize() {
+    	fContentFlowWrapper.resize();
+    }
+    
     /**
      * Removes items from DOM but keep it in memory
      * @param items to delete

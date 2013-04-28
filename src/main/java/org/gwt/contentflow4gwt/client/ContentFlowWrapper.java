@@ -76,4 +76,8 @@ final class ContentFlowWrapper extends JavaScriptObject {
 			self.moveTo(0);
     	}, timeout);
 	}-*/;
+    
+    public native void resize() /*-{
+    	this.resize();
+    }-*/;
 }
