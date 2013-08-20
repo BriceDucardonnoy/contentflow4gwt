@@ -6,7 +6,7 @@
 
     <groupId>org.gwt</groupId>
     <artifactId>contentflow4gwt</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
     <name>ContentFlow for GWT</name>
     <packaging>jar</packaging>
 

@@ -65,6 +65,7 @@
 .ContentFlow .globalCaption {
     text-align: center;
     font-weight: 700;
+    font-family: helvetica;
     color: #FFF;
     font-size: 14px;
     height: 20px;
