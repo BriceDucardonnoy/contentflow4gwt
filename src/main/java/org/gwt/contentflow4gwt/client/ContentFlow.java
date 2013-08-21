@@ -42,8 +42,6 @@ public class ContentFlow<T> extends Composite {
     
     private boolean isInit = false;
     
-    // TODO BDY: in contentflow_src.js, add Android and Windows Phone support (cf. todo in .js)
-    
     public ContentFlow() {
         this(false, false);
     }

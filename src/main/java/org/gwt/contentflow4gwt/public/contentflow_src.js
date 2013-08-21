@@ -23,7 +23,7 @@ var ContentFlowGlobal = {
         this.IE8 = this.IE && typeof(document.querySelectorAll) != "undefined" ? true : false;
         this.IE7 = this.IE && ! this.IE6 && !this.IE8 ? true : false;
         this.WebKit = /WebKit/i.test(navigator.userAgent) ? true : false,
-        this.iPhone = /iPhone|iPod/i.test(navigator.userAgent)? true : false;
+        this.iPhone = /iPhone|iPod|iPad|webOS|Android|Touch/i.test(navigator.userAgent)? true : false;
         this.Chrome = /Chrome/i.test(navigator.userAgent) ? true : false;
         this.Safari = /Safari/i.test(navigator.userAgent) && !this.Chrome ? true : false;
         this.Konqueror = navigator.vendor == "KDE" ? true : false;
