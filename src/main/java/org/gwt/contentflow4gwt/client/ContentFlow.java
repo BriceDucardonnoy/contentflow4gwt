@@ -45,9 +45,13 @@ public class ContentFlow<T> extends Composite {
     public ContentFlow() {
         this(false, false);
     }
+    
+    public ContentFlow(final boolean showGlobalCaption, final boolean showScrollbar) {
+        this(showGlobalCaption, showScrollbar, 1f);
+    }
 
-    public ContentFlow(boolean showGlobalCaption, boolean showScrollbar) {
-        this(showGlobalCaption, showScrollbar, 0.5f, 0.8f, 0.5f, false, "none");
+    public ContentFlow(final boolean showGlobalCaption, final boolean showScrollbar, final float scaleFactor) {
+        this(showGlobalCaption, showScrollbar, 0.5f, 0.8f, 0.5f, false, "none", scaleFactor);
     }
 
     /**
@@ -59,16 +63,18 @@ public class ContentFlow<T> extends Composite {
      * @param circularFlow True if you want the content to wrap around (ie, never end)
      * @param scrollInFrom  One of 'next', 'right', 'pre', 'previous', 'left' or 'none'.
      */
-    public ContentFlow(boolean showGlobalCaption, boolean showScrollbar, float reflectionHeight, final float flowSpeedFactor, final float flowDragFriction, final boolean circularFlow, final String scrollInFrom) {
+    public ContentFlow(boolean showGlobalCaption, boolean showScrollbar, float reflectionHeight, final float flowSpeedFactor, 
+    		final float flowDragFriction, final boolean circularFlow, final String scrollInFrom, final float scaleFactor) {
         fContentFlowItemClickListeners = new ArrayList<ContentFlowItemClickListener>();
         fContentFlowItemScrollListeners = new ArrayList<ContentFlowItemScrollListener>();
         fContentFlowItems = new ArrayList<Widget>();
         fContentFlowTemplate = new ContentFlowTemplate(showGlobalCaption, showScrollbar);
-        fContentFlowWrapper = createContentFlow(fContentFlowTemplate.getId(), reflectionHeight, flowSpeedFactor, flowDragFriction, circularFlow, scrollInFrom);
+        fContentFlowWrapper = createContentFlow(fContentFlowTemplate.getId(), reflectionHeight, flowSpeedFactor, flowDragFriction, circularFlow, scrollInFrom, scaleFactor);
         initWidget(fContentFlowTemplate.asWidget());
     }
 
-    private native ContentFlowWrapper createContentFlow(String id, float _reflectionHeight, float _flowSpeedFactor, float _flowDragFriction, boolean _circularFlow, String _scrollInFrom) /*-{
+    private native ContentFlowWrapper createContentFlow(String id, float _reflectionHeight, float _flowSpeedFactor, 
+    		float _flowDragFriction, boolean _circularFlow, String _scrollInFrom, float _scaleFactor) /*-{
         // ContentFlow extends the Function prototype with the method bind. Do the same in the actual "window" context
         Function.prototype.bind = $wnd.Function.prototype.bind;
 
@@ -89,6 +95,7 @@ public class ContentFlow<T> extends Composite {
             flowDragFriction: _flowDragFriction,
             scrollWheelSpeed: 1.0,
             circularFlow: _circularFlow,
+            scaleFactor: _scaleFactor,
             useAddOns: "all black"
         };
 

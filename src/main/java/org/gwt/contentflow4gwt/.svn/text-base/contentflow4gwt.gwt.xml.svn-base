@@ -1,6 +1,0 @@
-<module>
-    <inherits name='com.google.gwt.user.User'/>
-    <inherits name="com.reveregroup.gwt.imagepreloader.ImagePreloader"/>
-
-    <script src="contentflow.js"/>
-</module>
